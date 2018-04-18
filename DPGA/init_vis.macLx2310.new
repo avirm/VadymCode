@@ -1,0 +1,84 @@
+# Macro file for the initialization phase of example B3
+# when running in interactive mode with visualization
+#
+# Set some default verbose
+#
+/control/verbose 2
+/control/saveHistory
+/run/verbose 2
+#
+# Visualization setting
+/control/execute vis.mac
+
+
+
+
+#Na22
+/B3/eventaction/SetupTarget SourceNa22_Lyso
+/B3/eventaction/SetupDPGA Standard
+
+
+#Lyso
+#/gps/source/add 1000
+#/gps/source/list 
+
+/gps/ion 71 176 0 175.9426863
+
+/gps/pos/type Volume
+/gps/pos/shape Sphere
+/gps/pos/radius 30 cm
+/gps/pos/centre 0 0 0 mm
+/gps/pos/confine Cryst
+#/gps/source/multiplevertex
+
+#/analysis/setFileName B3_Na22_LYSO
+/run/beamOn 5
+
+/control/execute vis.mac
+#Na22
+/B3/eventaction/SetupTarget SourceNa22_Lyso
+/B3/eventaction/SetupDPGA Standard
+/gps/particle ion
+/gps/ion 11 22 0 1274.53
+/gps/pos/type Volume
+/gps/pos/shape Cylinder
+/gps/pos/confine Patient
+
+#Lyso
+/gps/source/add 2
+/gps/source/list 
+/gps/particle ion
+/gps/ion 71 176 0 175.9426863
+/gps/pos/type Volume
+/gps/pos/shape Sphere
+/gps/pos/radius 30 cm
+/gps/pos/centre 0 0 0 mm
+/gps/pos/confine Cryst
+/gps/source/multiplevertex
+
+/analysis/setFileName B3_Na22_LYSO
+/run/beamOn 10
+
+
+   /control/verbose 0
+/tracking/verbose 0
+/analysis/verbose 0
+#
+#
+
+#/control/execute vis.mac
+
+/run/verbose 0
+/run/printProgress 0
+/gps/verbose 1
+#
+#/gps/List 
+/B3/eventaction/SetupTarget "e+"
+/B3/eventaction/SetupDPGA "Standard"
+/gps/particle e+
+/gps/energy 0 MeV
+/B3/detector/TargetPosition PosX PosY PosZ *mm
+/gps/position PosX PosY PosZ mm
+/analysis/setFileName EfficiencyMap
+/run/beamOn 1000
+#

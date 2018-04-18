@@ -1,0 +1,41 @@
+# $Id: run_LYSO.mac 68058 2017-03-31 Arthur $
+#
+# Macro file of "exampleB3.cc"
+#
+#
+/control/verbose 0
+/tracking/verbose 0
+/analysis/verbose 0
+#
+#
+
+#/control/execute vis.mac
+
+/run/verbose 0
+/run/printProgress 0
+/gps/verbose 0
+#
+#/gps/List
+
+#Setup LYSO
+/B3/eventaction/SetupTarget "No_Source"
+/B3/eventaction/SetupDPGA "LYSO+PMMA"
+/gps/particle ion
+/gps/ion 71 176 0 0.
+/B3/detector/TargetPosition 0. 0. 0.
+/gps/ang/type iso
+/gps/energy 0 keV
+
+#
+/gps/pos/type Volume
+/gps/pos/shape Para
+/gps/pos/halfx 40 cm
+/gps/pos/halfy 40 cm
+/gps/pos/halfz 4O cm
+/gps/pos/confine PV_Cryst
+# Control Target
+/B3/detector/TargetPosition 0 0 0 *cm
+
+
+/analysis/setFileName B3_LYSO
+/run/beamOn 1000000

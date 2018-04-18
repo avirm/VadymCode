@@ -1,0 +1,75 @@
+  # $Id: run1.mac 68058 2013-03-13 14:47:43Z gcosmo $
+#
+# Macro file of "exampleB3.cc"
+#
+/control/verbose 0
+/tracking/verbose 0
+/analysis/verbose 0
+#
+#
+
+/control/execute vis.mac
+
+/run/verbose 0
+/run/printProgress 0
+/gps/verbose 0
+#
+#/gps/List
+
+/B3/detector/TargetPosition 0 0 0 *cm
+#/run/initialize   # equivalent de  runManager->Initialize(); // appel construct()
+
+#Setup1
+/B3/eventaction/SetupTarget "gamma_511keV_iso"
+/B3/eventaction/SetupDPGA "Standard"
+
+/gps/particle gamma
+/gps/pos/centre 0 0 0 cm
+/gps/ang/type iso
+/gps/energy 0.100 MeV
+
+
+# Control Target
+
+
+/analysis/setFileName B3_gamma511keV_Plot2
+
+/run/beamOn 100000
+
+
+
+/run/initialize
+
+#Setup2 
+/B3/eventaction/SetupTarget "e+"
+/B3/eventaction/SetupDPGA "Standard"
+/gps/particle e+
+/B3/detector/TargetPosition 0 0 0 *cm
+
+/gps/energy 0 MeV
+/analysis/setFileName B3_e+_Plot3
+/run/beamOn 15
+
+#Setup3
+/B3/eventaction/SetupTarget "SourceNa22"
+/B3/eventaction/SetupDPGA "Standard"
+/gps/particle ion
+/gps/ion 11 22 0 0.
+
+/B3/detector/TargetPosition 0. 0. 0.
+
+/gps/ang/type iso
+/gps/energy 21.9944364 keV
+/analysis/setFileName B3_Na22_Plot4
+
+
+
+
+/run/beamOn 0
+
+#
+#/gps/pos/type Volume
+#/gps/pos/shape Cylinder
+#/gps/pos/confine Patient
+
+

@@ -1,0 +1,103 @@
+# Macro file for the initialization phase of example B3
+# when running in interactive mode with visualization
+#
+# Set some default verbose
+#
+
+/control/verbose 0
+/tracking/verbose 0
+/analysis/verbose 0
+/run/verbose 0
+#
+#
+/run/verbose 0
+/run/printProgress 0
+/gps/verbose 0
+
+#/control/execute vis.mac
+
+###################################################
+### Geometry
+###################################################
+
+##############################################
+##### Setup Target 
+##############################################
+
+/B3/detector/TargetPosition 0. 0. 0. cm
+/B3/detector/setTargetMaterial Air
+
+#/B3/detector/setTargetSetup Target_Cube
+/B3/detector/setTargetSetup Target_Cylinder
+
+# if Target_Cylinder
+/B3/detector/LenghtCylinder_Target 100 mm
+/B3/detector/RadiusCylinder_Target 50 mm
+
+##############################################
+
+##############################################
+##### Setup Detector 
+##############################################
+
+#/B3/detector/setDetectorSetup Full_DPGA
+/B3/detector/setDetectorSetup Detector_Cylinder
+
+# if Target_Cylinder
+/B3/detector/LenghtCylinder_Detector 80 cm
+/B3/detector/RadiusCylinder_Detector 55 mm
+
+##############################################
+###################################################
+
+################################################################################
+### Temporal TimeStructure 
+################################################################################
+
+# 0->Default 1->Decay 2 -> Beam Bunch
+/B3/generator/fTimeStructure 0 
+#####################################################################
+
+###################################################
+# e+
+###################################################
+
+#Setup e+
+/gps/particle e+
+/gps/energy 0 MeV
+
+### Distribution volumique ! halfz ! Mettre Radius et Lenght de Target supérieur 
+/gps/pos/type Volume
+/gps/pos/shape Cylinder
+
+/gps/pos/halfz 20 cm
+/gps/pos/radius 20 cm
+
+/gps/pos/rot1 0 1 0
+/gps/pos/rot2 0 0 1
+
+/gps/pos/confine Patient
+
+/analysis/setFileName MAR_e+_R_L_R_L
+
+#########################################################
+# Set particle production thresholds (cuts)
+#########################################################
+#
+/run/setCut 1 mm
+/run/setCutForAGivenParticle e- 0.1 mm
+/run/setCutForAGivenParticle e+ 0.2 mm
+/run/setCutForAGivenParticle gamma 0.3 mm
+#
+############################################################
+
+
+############################################################
+# Beam nbr of event
+############################################################
+
+
+/run/beamOn 1500
+
+############################################################
+

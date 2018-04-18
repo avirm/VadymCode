@@ -1,0 +1,107 @@
+# $Id: run2.mac 68058 2013-03-13 14:47:43Z gcosmo $
+#
+# Macro file of "exampleB3.cc"
+#
+#
+
+/control/verbose 0
+/tracking/verbose 0
+/analysis/verbose 0
+#
+#
+#/control/execute vis.mac
+
+/run/verbose 0
+/run/printProgress 0
+/gps/verbose 0
+# Dump particle processes
+#
+
+#Next lines needed to have  atomic relaxation working 
+#
+/process/em/fluo true
+/process/em/auger true
+
+###################################################
+### Geometry
+###################################################
+
+##############################################
+##### Setup Target 
+##############################################
+
+/B3/detector/TargetPosition 0. 0. 0. cm
+/B3/detector/setTargetMaterial PMMA
+
+#/B3/detector/setTargetSetup Target_Cube
+/B3/detector/setTargetSetup Target_Cylinder
+
+# if Target_Cylinder
+/B3/detector/LenghtCylinder_Target 100 mm
+/B3/detector/RadiusCylinder_Target 30 mm
+
+##############################################
+
+##############################################
+##### Setup Detector 
+##############################################
+
+#/B3/detector/setDetectorSetup Full_DPGA
+/B3/detector/setDetectorSetup Detector_Cylinder
+#/B3/detector/setDetectorSetup Without_Detector
+
+# if Target_Cylinder
+/B3/detector/LenghtCylinder_Detector 80 cm
+/B3/detector/RadiusCylinder_Detector 55 mm
+
+##############################################
+###################################################
+
+################################################################################
+### Temporal TimeStructure 
+################################################################################
+
+# 0->Default 1->Decay 2 -> Beam Bunch
+
+/B3/generator/fTimeStructure 0
+
+
+################################################################################
+
+###################################################
+# e+ source
+###################################################
+
+#Setup2 
+
+/gps/particle e+
+
+/gps/energy 0 MeV
+
+
+
+#########################################################
+# Set particle production thresholds (cuts)
+#########################################################
+#
+/run/setCut 0.01 mm
+/run/setCutForAGivenParticle e- 0.1 mm
+/run/setCutForAGivenParticle e+ 0.1 mm
+/run/setCutForAGivenParticle gamma 0.7 mm
+#
+############################################################
+
+
+############################################################
+
+
+/analysis/setFileName B3_e+_Plot3
+
+############################################################
+# Beam nbr of event
+############################################################
+
+/run/initialize
+/run/beamOn 100
+
+############################################################

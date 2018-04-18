@@ -1,0 +1,113 @@
+# $Id: run2.mac 68058 2013-03-13 14:47:43Z gcosmo $
+#
+# Macro file of "exampleB3.cc"
+#
+#
+
+/control/verbose 0
+/tracking/verbose 0
+/analysis/verbose 0
+#
+#
+#/control/execute vis.mac
+
+/run/verbose 0
+/run/printProgress 0
+/gps/verbose 0
+# Dump particle processes
+#
+
+
+###################################################
+### Geometry
+###################################################
+
+##############################################
+##### Setup Target 
+##############################################
+
+/B3/detector/TargetPosition 0. 0. 0. cm
+/B3/detector/setTargetMaterial PMMA
+
+/B3/detector/setTargetSetup Target_Cube
+#/B3/detector/setTargetSetup Target_Cylinder
+
+# if Target_Cylinder
+/B3/detector/LenghtCylinder_Target 60 mm
+/B3/detector/RadiusCylinder_Target 50 mm
+
+##############################################
+
+##############################################
+##### Setup Detector 
+##############################################
+
+/B3/detector/setDetectorSetup Full_DPGA
+#/B3/detector/setDetectorSetup Detector_Cylinder
+
+# if Target_Cylinder
+/B3/detector/LenghtCylinder_Detector 800 mm
+/B3/detector/LenghtCylinder_Detector 50 mm
+
+##############################################
+###################################################
+
+################################################################################
+### Temporal TimeStructure 
+################################################################################
+
+# 0->Default 1->Decay 2 -> Beam Bunch
+
+/B3/generator/fTimeStructure 1
+
+# Decay command (1) 
+/B3/generator/DecayTauPrimmary 100 s
+
+
+################################################################################
+
+###################################################
+# Na22 confine
+###################################################
+
+#Setup3
+
+/gps/particle ion
+/gps/ion 11 22 0 0.
+/gps/ang/type iso
+/gps/energy 21.9944364 keV
+
+#
+/gps/pos/type Volume
+/gps/pos/shape Para
+/gps/pos/halfx 10 cm
+/gps/pos/halfy 10 cm
+/gps/pos/halfz 1O cm
+/gps/pos/confine Patient
+
+
+#########################################################
+# Set particle production thresholds (cuts)
+#########################################################
+#
+/run/setCut 0.01 mm
+/run/setCutForAGivenParticle e- 0.1 mm
+/run/setCutForAGivenParticle e+ 0.1 mm
+/run/setCutForAGivenParticle gamma 0.1 mm
+#
+############################################################
+
+
+############################################################
+
+
+/analysis/setFileName B3_Na22_Plot4_source
+
+############################################################
+# Beam nbr of event
+############################################################
+
+
+/run/beamOn 1000
+
+############################################################
