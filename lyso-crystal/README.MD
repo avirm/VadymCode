@@ -1,4 +1,3 @@
-============================
 To activate optical physics:
 ============================
 ***
@@ -31,7 +30,7 @@ and in `PhysicsList.cc` in function *B3PhysicsList::B3PhysicsList()
   opticalPhysics->SetTrackSecondariesFirst(kScintillation,true);
 ```
 ***
-================================================================
+
 Set optical properties of materials and define optical surfaces:
 ================================================================
 ***
