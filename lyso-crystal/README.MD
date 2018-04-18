@@ -104,16 +104,16 @@ Set optical properties of materials and define optical surfaces:
   new G4LogicalBorderSurface("crystWrap_left", crystalPV,
                              TeflonPV, crystWrap);
 ```
-    1. Create G4OpticalSurface.
-    2. Set model, type and finish:
-    ```c++
-    crystWrap->SetType(dielectric_metal);
-    crystWrap->SetModel(unified);
-    crystWrap->SetFinish(polished);
-    ```
-        a. Type `dielectric_metal`: only reflection or absorption (**NO REFRACTION**).
-        b. Type `dielectric_dielectric`: reflection, refraction or absorbtion.
-    3. Set optical properties like for materials.
-    4. Create new 
-        a. G4LogicalBorderSurface (name, physical volume1, physical volume1, optical surface) (surface between 2 physical volumes);
-        b. G4LogicalSkinSurface (name, LOGICAL volume, optical surface) **Important:** in this case all sides of volume have same optical properties. 
+  1. Create G4OpticalSurface.
+  2. Set model, type and finish:
+  ```c++
+  crystWrap->SetType(dielectric_metal);
+  crystWrap->SetModel(unified);
+  crystWrap->SetFinish(polished);
+  ```
+    * Type `dielectric_metal`: only reflection or absorption (**NO REFRACTION**).
+    * Type `dielectric_dielectric`: reflection, refraction or absorbtion.
+  3. Set optical properties like for materials.
+  4. Create new 
+    * G4LogicalBorderSurface (name, physical volume1, physical volume1, optical surface) (surface between 2 physical volumes);
+    * G4LogicalSkinSurface (name, LOGICAL volume, optical surface) **Important:** in this case all sides of volume have same optical properties. 
